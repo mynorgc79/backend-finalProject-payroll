@@ -103,9 +103,17 @@ class Login(APIView):
         user = authenticate(email=email, password=password)
         if user is not None:
             serializer = CustomUserSerializer(user)
+            # Crear un nuevo diccionario para los datos del usuario serializado
+            user_data = serializer.data
+            # Agregar el campo 'role' al diccionario de datos del usuario
+            user_data['role'] = user.role
             Token.objects.filter(user=user).delete()
             token = Token.objects.create(user=user)
-            return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_200_OK)
+
+            # Agregar el campo 'role' a los datos del usuario serializados
+            user_data = serializer.data
+            user_data['role'] = user.role
+            return Response({"token": token.key, "user": user_data}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "Invalid credentials"}, status=status.HTTP_404_NOT_FOUND)
         

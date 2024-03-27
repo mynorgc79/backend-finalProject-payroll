@@ -35,28 +35,17 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'apps.employee',
-    'corsheaders',
     'apps.user',
     'apps.company',
-    'corsheaders',
-    #'apps.employee',
-    #'apps.user',
-    #'apps.company',
-    # 'rest_framework',
-    # 'apps.company',
 ]
 
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
-    # 'apps.company'
     # 'apps.payrolls',
-    # 'apps.employee',
     # 'apps.company',
-    # 'apps.company'
     'apps.payrolls',
     # 'apps.employee',
     # 'apps.user',
-
 ]
 
 # Se definen las aplicaciones de terceros
@@ -103,6 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DEBUG = bool(os.environ.get('DEBUG', False))
 
 
+# PRODUCTION DATABASE
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -114,15 +104,18 @@ DATABASES = {
     },
 }
 
+# LOCAL DATABASE
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 # Se configuran las opciones de CORS
 
     
-CORS_ALLOWED_ORIGINS = [
-        'http://localhost:5173',
-        'http://127.0.0.1:5173',
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-    ]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
@@ -130,26 +123,20 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-        
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-    ]
-
-
 CORS_ORIGIN_WHITELIST = [
-        'http://localhost:3000',
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-        'http://127.0.0.1:3000',
-    ]
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+]
 
 CSRF_TRUSTED_ORIGINS = [
-        'http://localhost:3000',
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-        'http://127.0.0.1:3000',
-    ]
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+]
 
 PASSWORD_HASHERS = [
         "django.contrib.auth.hashers.Argon2PasswordHasher",
